@@ -7,6 +7,8 @@ package jayeshenterprisesportal;
 
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
@@ -28,17 +30,46 @@ public class HomePage extends javax.swing.JFrame {
      */
     public HomePage() {
         initComponents();
-        jLabel15.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image1.jpeg"));
+        /*jLabel15.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image1.jpeg"));
         jLabel16.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image2.jpeg"));
         jLabel17.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image3.jpeg"));
         jLabel32.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image4.jpeg"));
         jLabel33.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image5.jpeg"));
         jLabel34.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image6.jpeg"));
-        
+        */
         Date date = new Date();
         SimpleDateFormat sdf  = new SimpleDateFormat("dd/mm/yyyy");
         String dt = sdf.format(date);
         jTextField8.setText(dt);
+        
+        /*
+        try
+        {
+               char ch;
+               String billNo="";
+               FileReader fr = new FileReader ("C:\\Users\\dell\\NetBeansProjects\\InternProject\\bill.txt");
+               // read from FileReader till the end of file 
+            while ((ch=(char)fr.read())!=-1) 
+            {
+            billNo = billNo + ch;
+            //increment value of ch
+            }
+            
+            int bn = Integer.parseInt(billNo) + 1;
+            billNo = bn + "";
+            jTextField11.setText(billNo);
+        
+  
+        // close the file 
+        fr.close(); 
+        FileWriter fw = new FileWriter ("C:\\Users\\dell\\NetBeansProjects\\InternProject\\bill.txt");
+               
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        */
     }
 
     /**
@@ -1037,34 +1068,15 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-                String CustomerName = jTextField9.getText();
-                String MobileNo = jTextField10.getText();
-                String BillNo = jTextField11.getText();
-                String EmployeeName = jTextField12.getText();
-                String dt = jTextField8.getText();
-                
-            try
-           {
-              /* char ch;
-               String billNo="";
-               FileReader fr = new FileReader ("F:\\projects\\JayeshEnterprisesPortal\\bill.txt");
-               // read from FileReader till the end of file 
-            while ((ch=fr.read())!=-1) 
-                billNo = billNo + ch;
             
-            int bn = Integer.parseInt(billNo) + 1;
-            billNo = bn + "";
-            jTextField11.setText(billNo);
-        
-  
-        // close the file 
-        fr.close(); 
-               FileWriter fw = new FileWriter ("F:\\projects\\JayeshEnterprisesPortal\\bill.txt");
-               */
+            try
+            {       
                
                /*Class.forName("com.mysql.jdbc.Driver");
                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
                PreparedStatement st2 = con.prepareStatement("insert into BillingCommonDetails values(?,?,?,?,?) ");
+               
+                
                st2.setString(1, CustomerName);
                st2.setString(2, MobileNo);
                st2.setString(3,dt);
@@ -1073,7 +1085,15 @@ public class HomePage extends javax.swing.JFrame {
             
                st2.executeUpdate();
                JOptionPane.showMessageDialog(this,"DONE");
-               */
+                
+                */
+                
+                String CustomerName = jTextField9.getText();
+                String MobileNo = jTextField10.getText();
+                String BillNo = jTextField11.getText();
+                String EmployeeName = jTextField12.getText();
+                String dt = jTextField8.getText();
+                
                ArrayList obj = new ArrayList();
                TableModel tm = jTable1.getModel();
                for (int i=0;i<tm.getRowCount();i++)
