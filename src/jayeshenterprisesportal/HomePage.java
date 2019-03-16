@@ -28,6 +28,8 @@ public class HomePage extends javax.swing.JFrame {
     /**
      * Creates new form HomePage
      */
+    
+    String dt;
     public HomePage() {
         initComponents();
         /*jLabel15.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image1.jpeg"));
@@ -39,7 +41,7 @@ public class HomePage extends javax.swing.JFrame {
         */
         Date date = new Date();
         SimpleDateFormat sdf  = new SimpleDateFormat("dd/mm/yyyy");
-        String dt = sdf.format(date);
+        dt = sdf.format(date);
         jTextField8.setText(dt);
         
         /*
@@ -47,7 +49,7 @@ public class HomePage extends javax.swing.JFrame {
         {
                char ch;
                String billNo="";
-               FileReader fr = new FileReader ("C:\\Users\\dell\\NetBeansProjects\\InternProject\\bill.txt");
+               FileReader fr = new FileReader ("F:\\projects\\bill.txt");
                // read from FileReader till the end of file 
             while ((ch=(char)fr.read())!=-1) 
             {
@@ -62,7 +64,7 @@ public class HomePage extends javax.swing.JFrame {
   
         // close the file 
         fr.close(); 
-        FileWriter fw = new FileWriter ("C:\\Users\\dell\\NetBeansProjects\\InternProject\\bill.txt");
+        FileWriter fw = new FileWriter ("F:\\projects\\bill.txt");
                
         }
         catch (Exception e)
@@ -810,14 +812,13 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(253, 253, 253))))
+                .addContainerGap(266, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(253, 253, 253))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -842,9 +843,9 @@ public class HomePage extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14))))
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField12)
@@ -1069,10 +1070,16 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
             
+        
+                String CustomerName = jTextField9.getText();
+                String MobileNo = jTextField10.getText();
+                String BillNo = jTextField11.getText();
+                String EmployeeName = jTextField12.getText();
+                
             try
             {       
                
-               /*Class.forName("com.mysql.jdbc.Driver");
+               Class.forName("com.mysql.jdbc.Driver");
                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
                PreparedStatement st2 = con.prepareStatement("insert into BillingCommonDetails values(?,?,?,?,?) ");
                
@@ -1084,15 +1091,11 @@ public class HomePage extends javax.swing.JFrame {
                st2.setString(5, EmployeeName);
             
                st2.executeUpdate();
-               JOptionPane.showMessageDialog(this,"DONE");
+               
                 
-                */
                 
-                String CustomerName = jTextField9.getText();
-                String MobileNo = jTextField10.getText();
-                String BillNo = jTextField11.getText();
-                String EmployeeName = jTextField12.getText();
-                String dt = jTextField8.getText();
+                
+                
                 
                ArrayList obj = new ArrayList();
                TableModel tm = jTable1.getModel();
@@ -1129,6 +1132,45 @@ public class HomePage extends javax.swing.JFrame {
                   
                     i+=6;
                }
+
+               TableModel tm1 = jTable1.getModel();
+               obj.clear();
+               for (int p=0;p<tm1.getRowCount();p++)
+               {
+                   for (int q=0;q<tm1.getColumnCount();q++)
+                   {
+                       obj.add(tm1.getValueAt(p, q));
+                   }
+               }
+               
+               int count = 0;
+               while(obj.get(count)!=null)               
+                   count++;
+               for(int x=0;x<count-6;x+=6)
+               {
+                    if (obj.get(i)!=null && obj.get(i+1)!=null && obj.get(i+2)!=null)
+                    {    
+                        String billNo_sNo = ((jTextField11.getText())+("/")+(obj.get(x)));
+                        String item = obj.get(x+1).toString();
+                        String rate = obj.get(x+2).toString();
+                        String qty = obj.get(x+3).toString();
+                        String tax = obj.get(x+4).toString();
+                        String total = obj.get(x+5).toString();
+                    
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+                        PreparedStatement st3 = con1.prepareStatement("insert into BillingTableDetails values(?,?,?,?,?,?)");
+                        st3.setString(1, billNo_sNo);
+                        st3.setString(2, item);
+                        st3.setString(3, rate);
+                        st3.setString(4, qty);
+                        st3.setString(5, tax);
+                        st3.setString(6, total);
+                    
+                        JOptionPane.showMessageDialog(this,"DONE");
+                    }
+               }
+               
            }
            catch(Exception ex)
            {
