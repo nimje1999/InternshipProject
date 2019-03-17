@@ -665,7 +665,8 @@ public class EmployeeWindow extends javax.swing.JFrame {
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
             String choice =(String) jComboBox1.getSelectedItem();
-            
+       if(choice.equals("Bill No"))
+         {
             
             try
             {
@@ -714,6 +715,59 @@ public class EmployeeWindow extends javax.swing.JFrame {
             {
                 ex.printStackTrace();
             }
+         }
+       if(choice.equals("Date"))
+         {
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+               Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st1 = con1.prepareStatement("select CustomerName from BillingCommonDetails where Date=choice");
+               ResultSet rt = st1.getResultSet();
+               String name = rt.getString(choice);
+               jTextField9.setText(name);
+            }
+            catch(Exception ex1)
+            {
+                ex1.printStackTrace();
+            }
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+               Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st1 = con1.prepareStatement("select MobileNo from BillingCommonDetails where Date=choice");
+               ResultSet rt = st1.getResultSet();
+               String mobNo = rt.getString(choice);
+               jTextField10.setText(mobNo);
+            }
+            catch(Exception ex1)
+            {
+                ex1.printStackTrace();
+            }
+            
+            
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+               Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st1 = con1.prepareStatement("select * from BillingTableDetails where Date=choice");
+               ResultSet rs1 = st1.executeQuery();
+               DefaultTableModel dtm1 = (DefaultTableModel)jTable1.getModel();
+               while(rs1.next())
+               {
+                  Object obj[] = {rs1.getString(1),rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getString(6)};
+                  dtm1.addRow(obj);
+               }
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+         }
+         
     }//GEN-LAST:event_jButton4MouseClicked
 
     /**
