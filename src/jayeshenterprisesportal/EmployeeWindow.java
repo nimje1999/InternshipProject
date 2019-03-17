@@ -79,6 +79,10 @@ public class EmployeeWindow extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -454,6 +458,15 @@ public class EmployeeWindow extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable1);
 
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel15.setText("Customer Name");
+
+        jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Mobile No");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -469,7 +482,17 @@ public class EmployeeWindow extends javax.swing.JFrame {
                         .addComponent(jButton4))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField9)
+                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -480,9 +503,17 @@ public class EmployeeWindow extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View Bill", jPanel6);
@@ -491,7 +522,6 @@ public class EmployeeWindow extends javax.swing.JFrame {
 
         jLabel12.setBackground(new java.awt.Color(0, 102, 102));
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\logout-rounded.png")); // NOI18N
         jLabel12.setText("Sign Out");
         jLabel12.setOpaque(true);
         jLabel12.setPreferredSize(new java.awt.Dimension(186, 128));
@@ -641,12 +671,42 @@ public class EmployeeWindow extends javax.swing.JFrame {
             {
                 Class.forName("com.mysql.jdbc.Driver");
                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
-               PreparedStatement st1 = con1.prepareStatement("select * from attendencemanager");
+               PreparedStatement st1 = con1.prepareStatement("select CustomerName from BillingCommonDetails where BillNo=choice");
+               ResultSet rt = st1.getResultSet();
+               String name = rt.getString(choice);
+               jTextField9.setText(name);
+            }
+            catch(Exception ex1)
+            {
+                ex1.printStackTrace();
+            }
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+               Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st1 = con1.prepareStatement("select MobileNo from BillingCommonDetails where BillNo=choice");
+               ResultSet rt = st1.getResultSet();
+               String mobNo = rt.getString(choice);
+               jTextField10.setText(mobNo);
+            }
+            catch(Exception ex1)
+            {
+                ex1.printStackTrace();
+            }
+            
+            
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+               Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st1 = con1.prepareStatement("select * from BillingTableDetails where BillNo/SNo=choice");
                ResultSet rs1 = st1.executeQuery();
                DefaultTableModel dtm1 = (DefaultTableModel)jTable1.getModel();
                while(rs1.next())
                {
-                  Object obj[] = {rs1.getString(1),rs1.getString(2),rs1.getString(3)};
+                  Object obj[] = {rs1.getString(1),rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getString(6)};
                   dtm1.addRow(obj);
                }
             }
@@ -713,6 +773,8 @@ public class EmployeeWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -739,11 +801,13 @@ public class EmployeeWindow extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
