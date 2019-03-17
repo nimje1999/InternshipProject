@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+ 
 package jayeshenterprisesportal;
 
 import java.sql.Connection;
@@ -83,6 +80,7 @@ public class EmployeeWindow extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -472,13 +470,15 @@ public class EmployeeWindow extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addComponent(jLabel14)
                         .addGap(77, 77, 77)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
+                        .addGap(47, 47, 47)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
@@ -499,10 +499,12 @@ public class EmployeeWindow extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4))
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -664,17 +666,24 @@ public class EmployeeWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-            String choice =(String) jComboBox1.getSelectedItem();
             
+        String choice =(String) jComboBox1.getSelectedItem();
+        String data = jTextField8.getText();
+       if(choice.equals("Bill No"))
+         {
             
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
-               PreparedStatement st1 = con1.prepareStatement("select CustomerName from BillingCommonDetails where BillNo=choice");
+               PreparedStatement st1 = con1.prepareStatement("select CustomerName from BillingCommonDetails where BillNo=?");
+               st1.setString(1, data);
                ResultSet rt = st1.getResultSet();
-               String name = rt.getString(choice);
+               if(rt.next())
+               {
+               String name = rt.getString(data);
                jTextField9.setText(name);
+               }
             }
             catch(Exception ex1)
             {
@@ -685,10 +694,14 @@ public class EmployeeWindow extends javax.swing.JFrame {
             {
                 Class.forName("com.mysql.jdbc.Driver");
                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
-               PreparedStatement st1 = con1.prepareStatement("select MobileNo from BillingCommonDetails where BillNo=choice");
+               PreparedStatement st1 = con1.prepareStatement("select MobileNo from BillingCommonDetails where BillNo=?");
+               st1.setString(1, data);
                ResultSet rt = st1.getResultSet();
-               String mobNo = rt.getString(choice);
+               if(rt.next())
+               {
+               String mobNo = rt.getString(data);
                jTextField10.setText(mobNo);
+               }
             }
             catch(Exception ex1)
             {
@@ -701,19 +714,87 @@ public class EmployeeWindow extends javax.swing.JFrame {
             {
                 Class.forName("com.mysql.jdbc.Driver");
                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
-               PreparedStatement st1 = con1.prepareStatement("select * from BillingTableDetails where BillNo/SNo=choice");
+               PreparedStatement st1 = con1.prepareStatement("select * from BillingTableDetails where BillNo/SNo=?");
+               st1.setString(1, data);
                ResultSet rs1 = st1.executeQuery();
+               if(rs1.next())
+               {
                DefaultTableModel dtm1 = (DefaultTableModel)jTable1.getModel();
                while(rs1.next())
                {
                   Object obj[] = {rs1.getString(1),rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getString(6)};
                   dtm1.addRow(obj);
                }
+               }
             }
             catch(Exception ex)
             {
                 ex.printStackTrace();
             }
+         }
+       if(choice.equals("Date"))
+         {
+           
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+               Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st1 = con1.prepareStatement("select CustomerName from BillingCommonDetails where Date=?");
+               st1.setString(1, data);
+               ResultSet rt = st1.getResultSet();
+               if(rt.next())
+               {
+               String name = rt.getString(data);
+               jTextField9.setText(name);
+            }  }
+            catch(Exception ex1)
+            {
+                ex1.printStackTrace();
+            }
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+               Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st1 = con1.prepareStatement("select MobileNo from BillingCommonDetails where Date=?");
+               st1.setString(1, data);
+               ResultSet rt = st1.getResultSet();
+               if(rt.next())
+               {
+               String mobNo = rt.getString(data);
+               jTextField10.setText(mobNo);
+               }
+            }
+            catch(Exception ex1)
+            {
+                ex1.printStackTrace();
+            }
+            
+            
+            
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+               Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st1 = con1.prepareStatement("select * from BillingTableDetails where Date=?");
+               st1.setString(1, data);
+               ResultSet rs1 = st1.executeQuery();
+               if(rs1.next())
+               {
+               DefaultTableModel dtm1 = (DefaultTableModel)jTable1.getModel();
+               while(rs1.next())
+               {
+                  Object obj[] = {rs1.getString(1),rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getString(6)};
+                  dtm1.addRow(obj);
+               }
+               }
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+         }
+         
     }//GEN-LAST:event_jButton4MouseClicked
 
     /**
@@ -741,6 +822,14 @@ public class EmployeeWindow extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EmployeeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -808,6 +897,7 @@ public class EmployeeWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

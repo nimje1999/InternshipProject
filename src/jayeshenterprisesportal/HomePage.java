@@ -1146,11 +1146,13 @@ public class HomePage extends javax.swing.JFrame {
                int count = 0;
                while(obj.get(count)!=null)               
                    count++;
-               for(int x=0;x<count-6;x+=6)
+               System.out.println(count);
+               for(int x=0;x<count;x+=6)
                {
-                    if (obj.get(i)!=null && obj.get(i+1)!=null && obj.get(i+2)!=null)
+                    //System.out.println("Check3");
+                    if (obj.get(x)!=null && obj.get(x+1)!=null && obj.get(x+2)!=null)
                     {    
-                        String billNo_sNo = ((jTextField11.getText())+("/")+(obj.get(x)));
+                        String billNo_sNo = ((jTextField11.getText())+("/")+(obj.get(x).toString()));
                         String item = obj.get(x+1).toString();
                         String rate = obj.get(x+2).toString();
                         String qty = obj.get(x+3).toString();
@@ -1166,11 +1168,14 @@ public class HomePage extends javax.swing.JFrame {
                         st3.setString(4, qty);
                         st3.setString(5, tax);
                         st3.setString(6, total);
-                    
-                        JOptionPane.showMessageDialog(this,"DONE");
+                        st3.executeUpdate();
+                        
                     }
+                    JOptionPane.showMessageDialog(this,"DONE");
+                    
                }
                
+           System.out.println("Check4");
            }
            catch(Exception ex)
            {
@@ -1208,6 +1213,7 @@ public class HomePage extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
