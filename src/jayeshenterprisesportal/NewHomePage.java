@@ -24,14 +24,14 @@ public class NewHomePage extends JFrame {
     Timer tm;
     int x=0;
     String [] list = {
-        "D:/Projects/InternshipProject/src/jayeshenterprisesportal/1.jpg",
-        "D:/Projects/InternshipProject/src/jayeshenterprisesportal/2.jpg",
-        "D:/Projects/InternshipProject/src/jayeshenterprisesportal/3.jpg",
-        "D:/Projects/InternshipProject/src/jayeshenterprisesportal/4.jpg",
-        "D:/Projects/InternshipProject/src/jayeshenterprisesportal/5.jpg",
-        "D:/Projects/InternshipProject/src/jayeshenterprisesportal/6.jpg",
-        "D:/Projects/InternshipProject/src/jayeshenterprisesportal/7.jpg",
-        "D:/Projects/InternshipProject/src/jayeshenterprisesportal/8.jpg",};
+        "C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/1.jpg",
+        "C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/2.jpg",
+        "C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/3.jpg",
+        "C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/4.jpg",
+        "C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/5.jpg",
+        "C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/6.jpg",
+        "C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/7.jpg",
+        "C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/8.jpg"};
     
     /**
      * Creates new form NewHomePage
@@ -121,6 +121,7 @@ public class NewHomePage extends JFrame {
         jPanel25 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -130,7 +131,6 @@ public class NewHomePage extends JFrame {
         jButton2 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jPanel3 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -425,7 +425,7 @@ public class NewHomePage extends JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
         );
 
         jPanel22.setBackground(new java.awt.Color(41, 57, 80));
@@ -494,17 +494,15 @@ public class NewHomePage extends JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
         );
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\dell\\Desktop\\experttech-.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-            .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+            .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 194, Short.MAX_VALUE)
             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
             .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -528,6 +526,8 @@ public class NewHomePage extends JFrame {
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 540));
+
+        jPanel3.setOpaque(false);
 
         jPanel4.setBackground(new java.awt.Color(23, 35, 51));
 
@@ -578,7 +578,7 @@ public class NewHomePage extends JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(jRadioButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jRadioButton2)
@@ -600,7 +600,7 @@ public class NewHomePage extends JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
+                        .addGap(79, 79, 79)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -623,25 +623,27 @@ public class NewHomePage extends JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jButton2)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 29, Short.MAX_VALUE))
         );
-
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 240, 240));
-
-        jPanel3.setOpaque(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(299, 299, 299)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(341, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(159, 159, 159))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 890, 560));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 880, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -683,6 +685,8 @@ public class NewHomePage extends JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewHomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
