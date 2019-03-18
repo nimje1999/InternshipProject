@@ -7,8 +7,10 @@ package jayeshenterprisesportal;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
@@ -17,6 +19,8 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.media.Manager;
 import javax.media.Player;
 import javax.swing.ImageIcon;
@@ -25,12 +29,13 @@ import javax.swing.table.TableModel;
 
 public class HomePage extends javax.swing.JFrame {
 
+        int bn=0;
     /**
      * Creates new form HomePage
      */
     
     String dt;
-    public HomePage() {
+    public HomePage() throws IOException {
         initComponents();
         /*jLabel15.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image1.jpeg"));
         jLabel16.setIcon(new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image2.jpeg"));
@@ -44,34 +49,31 @@ public class HomePage extends javax.swing.JFrame {
         dt = sdf.format(date);
         jTextField8.setText(dt);
         
-        /*
+        int ch; 
+        // check if File exists or not 
+        FileReader fr=null; 
         try
-        {
-               char ch;
-               String billNo="";
-               FileReader fr = new FileReader ("F:\\projects\\bill.txt");
-               // read from FileReader till the end of file 
-            while ((ch=(char)fr.read())!=-1) 
+        { 
+            fr = new FileReader("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/bill.txt"); 
+        } 
+        catch (FileNotFoundException fe) 
+        { 
+            System.out.println("File not found"); 
+        } 
+        bn = 0;
+        // read from FileReader till the end of file 
+        while ((ch=fr.read())!=-1) 
             {
-            billNo = billNo + ch;
-            //increment value of ch
+            bn = bn*10 + (ch - 48);
+            //add value of ch
             }
-            
-            int bn = Integer.parseInt(billNo) + 1;
-            billNo = bn + "";
-            jTextField11.setText(billNo);
-        
-  
+            bn+=1;
+            System.out.println(bn);
+            jTextField11.setText(bn+"");
         // close the file 
         fr.close(); 
-        FileWriter fw = new FileWriter ("F:\\projects\\bill.txt");
-               
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        */
+        
+        
     }
 
     /**
@@ -332,7 +334,7 @@ public class HomePage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Home", jPanel2);
@@ -415,7 +417,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("About Us", jPanel5);
@@ -516,7 +518,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addGap(44, 44, 44)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -858,7 +860,7 @@ public class HomePage extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Billing", jPanel9);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 84, 886, 480));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 84, 886, 520));
 
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jayeshenterprisesportal/12428-comp-image.png"))); // NOI18N
         getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
@@ -1046,14 +1048,14 @@ public class HomePage extends javax.swing.JFrame {
                         ex.printStackTrace();
                 }   // TODO add your handling code here:
     }//GEN-LAST:event_jButton5MouseClicked
-            ImageIcon ref1 = new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image1.jpeg");
-            ImageIcon ref2 = new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image2.jpeg");
-            ImageIcon ref3 = new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image3.jpeg");
-            ImageIcon ref4 = new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image4.jpeg");
-            ImageIcon ref5 = new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image5.jpeg");
-            ImageIcon ref6 = new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image6.jpeg");
-            ImageIcon ref7 = new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image7.jpeg");
-            ImageIcon ref8 = new ImageIcon("C:\\Users\\sarvesh\\Desktop\\Project Images\\Image8.jpeg");
+            ImageIcon ref1 = new ImageIcon("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/1.jpg");
+            ImageIcon ref2 = new ImageIcon("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/2.jpg");
+            ImageIcon ref3 = new ImageIcon("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/3.jpg");
+            ImageIcon ref4 = new ImageIcon("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/4.jpg");
+            ImageIcon ref5 = new ImageIcon("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/5.jpg");
+            ImageIcon ref6 = new ImageIcon("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/6.jpg");
+            ImageIcon ref7 = new ImageIcon("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/7.jpg");
+            ImageIcon ref8 = new ImageIcon("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/8.jpg");
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
             ImageIcon images[] = {ref1,ref2,ref3,ref4,ref5,ref6,ref7,ref8};
             jLabel15.setIcon(ref8);
@@ -1062,6 +1064,32 @@ public class HomePage extends javax.swing.JFrame {
             jLabel32.setIcon(ref6);
             jLabel33.setIcon(ref4);
             jLabel34.setIcon(ref2);
+            
+            FileWriter fw; 
+            try {
+                fw = new FileWriter("C:/Users/dell/NetBeansProjects/InternshipProject/src/jayeshenterprisesportal/bill.txt");
+            
+  
+        // read character wise from string and write  
+        // into FileWriter  
+        String billNo = bn + "";
+        for (int i = 0; i < billNo.length(); i++) 
+                try {
+                    fw.write(billNo.charAt(i));
+                } catch (IOException ex) {
+                    Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+  
+        System.out.println("Writing successful"); 
+            try {
+                //close the file
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            } catch (IOException ex) {
+                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
@@ -1219,7 +1247,11 @@ public class HomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePage().setVisible(true);
+                try {
+                    new HomePage().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

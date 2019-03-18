@@ -5,11 +5,14 @@
  */
 package jayeshenterprisesportal;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -426,9 +429,15 @@ public class AdminWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-            HomePage hp = new HomePage();
+            HomePage hp;
+        try {
+            hp = new HomePage();
+        
             hp.setVisible(true);
             dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(AdminWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -472,7 +481,9 @@ public class AdminWindow extends javax.swing.JFrame {
            catch(ClassNotFoundException| SQLException ex)
            {
                ex.printStackTrace();
-           }
+           } catch (IOException ex) {
+            Logger.getLogger(AdminWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

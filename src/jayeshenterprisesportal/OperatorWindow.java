@@ -5,11 +5,14 @@
  */
 package jayeshenterprisesportal;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -476,9 +479,15 @@ public class OperatorWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-            HomePage hp = new HomePage();
+            HomePage hp;
+        try {
+            hp = new HomePage();
+        
             hp.setVisible(true);
             dispose();        // TODO add your handling code here:
+            } catch (IOException ex) {
+            Logger.getLogger(OperatorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -522,7 +531,9 @@ public class OperatorWindow extends javax.swing.JFrame {
            catch(ClassNotFoundException| SQLException ex)
            {
                ex.printStackTrace();
-           }        // TODO add your handling code here:
+           } catch (IOException ex) {
+            Logger.getLogger(OperatorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
