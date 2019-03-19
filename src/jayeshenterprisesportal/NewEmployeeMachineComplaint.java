@@ -5,6 +5,12 @@
  */
 package jayeshenterprisesportal;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dell
@@ -230,6 +236,11 @@ public class NewEmployeeMachineComplaint extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Sign Out");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -317,7 +328,12 @@ public class NewEmployeeMachineComplaint extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(23, 35, 51));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Save");
+        jButton1.setText("Submit");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -351,8 +367,8 @@ public class NewEmployeeMachineComplaint extends javax.swing.JFrame {
                         .addGap(108, 108, 108))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(363, 363, 363))
+                .addComponent(jButton1)
+                .addGap(362, 362, 362))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,6 +425,41 @@ public class NewEmployeeMachineComplaint extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+            String machineName = jTextField1.getText();
+            String machineCode = jTextField2.getText();
+            String problemFaced = jTextArea2.getText();
+            
+            try
+           {
+               Class.forName("com.mysql.jdbc.Driver");
+               Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st = con.prepareStatement("insert into machinecomplainttable values(?,?,?)");
+               st.setString(1, machineName);
+               st.setString(2, machineCode);
+               st.setString(3, problemFaced);
+               st.executeUpdate();
+               JOptionPane.showMessageDialog(this, "Submitted Successfully");
+               jTextField1.setText("");
+               jTextField2.setText("");
+               jTextArea2.setText("");  
+           }
+           catch(ClassNotFoundException| SQLException ex1)
+           {
+               ex1.printStackTrace();
+           }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        NewHomePage nhp= new NewHomePage();
+        nhp.setVisible(true);
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

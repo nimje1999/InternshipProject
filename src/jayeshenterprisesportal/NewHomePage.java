@@ -10,6 +10,11 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.*;
 
 
@@ -533,10 +538,16 @@ public class NewHomePage extends JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 540));
 
         jPanel3.setOpaque(false);
+        jPanel3.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jPanel3MouseWheelMoved(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(23, 35, 51));
 
         jRadioButton1.setBackground(new java.awt.Color(23, 35, 51));
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Admin ");
@@ -547,6 +558,7 @@ public class NewHomePage extends JFrame {
         });
 
         jRadioButton2.setBackground(new java.awt.Color(23, 35, 51));
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Employee ");
@@ -571,7 +583,13 @@ public class NewHomePage extends JFrame {
         jLabel9.setText("Password:");
 
         jButton2.setBackground(new java.awt.Color(23, 35, 51));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Login");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -695,13 +713,53 @@ public class NewHomePage extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jPanel3MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jPanel3MouseWheelMoved
+       // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3MouseWheelMoved
+                   
+        static String id;
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+
+           id = jTextField3.getText();
+           char ch[]  = jPasswordField1.getPassword();
+           String pass = new String(ch);
+           try
+           {
+               Class.forName("com.mysql.jdbc.Driver");
+               Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+               PreparedStatement st;
+               if(jRadioButton1.isSelected())
+                   st = con.prepareStatement("select * from admintable where LoginID=? and Password=?");
+               else
+                   st = con.prepareStatement("select * from OperatorTable where LoginID=? and Password=?");
+               st.setString(1, id);
+               st.setString(2, pass);
+               ResultSet rs = st.executeQuery();
+               if(rs.next())
+               {
+                  //JOptionPane.showMessageDialog(this , "Welcome ");
+                  AdminWindow aw = new AdminWindow();
+                  aw.setVisible(true);
+                  dispose();
+               }
+               else
+               {
+                  JOptionPane.showMessageDialog(this, "Invalid ID or Password");
+               }
+           }
+           catch(ClassNotFoundException| SQLException ex)
+           {
+           }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
